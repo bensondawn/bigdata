@@ -42,7 +42,7 @@
 
 > * git add .
 > * git commit -m "内容描述"
-> * git push origin master
+> * git push origin master（第一次push要用git push -u origin master）
 
 ## 10、push到GitHub服务器
 
