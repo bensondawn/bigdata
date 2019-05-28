@@ -24,6 +24,10 @@
 
 ## 5、在GitHub上创建一个仓库
 
+> * 建议参考<https://www.liaoxuefeng.com/wiki/896043488029600/898732792973664>
+> * 下面的6、7、8三条建议直接省略，采用git clone 地址；该方式适用于先在GitHub上建仓储。
+> * 6、7、8的方式适用于先在本地建仓储，后再GitHub上建仓储。
+
 ## 6、本地初始化
 
 > * 进入要同步的目录执行：git init
@@ -32,7 +36,7 @@
 
 把刚才创建的仓库的地址添加到本地。
 
-> * git remote add originhttps://github.com/bensondawn/bigdata
+> * git remote add origin https://github.com/bensondawn/bigdata.git
 
 ## 8、更新服务器数据到本地
 
