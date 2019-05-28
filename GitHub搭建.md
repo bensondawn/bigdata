@@ -40,7 +40,7 @@
 
 ## 8、更新服务器数据到本地
 
-> * git pull --rebase origin master
+> * git pull
 
 ## 9、提交本地资源
 
@@ -64,4 +64,7 @@
 
 > * git clone https://github.com/bensondawn/bigdata.git
 > * git pull（以后直接用改命令从GitHub上更新就行了！）
+> * 推送分支git push origin master(分支名称)，git push origin dev(分支名称)
+> * rebase操作可以把本地未push的分叉提交历史整理成直线；
+> * rebase的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。
 
