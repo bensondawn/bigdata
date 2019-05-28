@@ -54,3 +54,10 @@
 
 > * git config --global credential.helper store
 
+### 12、其它
+
+如果想把GitHub上的仓储下载下来，并随时更新可以这样：
+
+> * git clone https://github.com/bensondawn/bigdata.git
+> * git pull（以后直接用改命令从GitHub上更新就行了！）
+
