@@ -33,7 +33,7 @@ post请求浏览器先发送header，服务器响应100；后发送data，服务
 - Websocket是需要浏览器和服务器握手建立连接；http是浏览器向服务器发起的连接，服务器预先不知道该连接。
 - Websocket在建立握手时，数据是通过http传输的，连接建立后的数据传输是不需要http的，是通过TCP进行数据传输。
 
-![](D:\大数据\bigdata\picture\20170626140009906.png)
+![](E:\GitStorage\bigdata\picture\20170626140009906.png)
 
 ## 5、三次握手和四次挥手
 
@@ -48,11 +48,9 @@ http://www.cnblogs.com/zeze/p/9509926.html
 | SYN  |                   请求建立连接，设置为1。                    |
 | FIN  | 希望断开连接。FIN=1表示：此报文段的发送方的数据已经发送完毕，并要求释放运输连接。 |
 
-![](D:\大数据\bigdata\picture\20180810095413143.png)
+![](E:\GitStorage\bigdata\picture\20180810095413143.png)
 
-
-
-![](D:\大数据\bigdata\picture\20180810101919196.png)
+![](E:\GitStorage\bigdata\picture\20180810101919196.png)
 
 ## 6、MySQL数据库引擎MyISAM和InnoDB的区别
 
@@ -85,9 +83,9 @@ InnoDB：没有保存表的总行数(只能遍历)，如果使用select count(*)
 
 ## 7、MySQL删除重复数据，只保留一条
 
-![](D:\大数据\bigdata\picture\20180901115402863.jpg)
+![](E:\GitStorage\bigdata\picture\20180901115402863.jpg)
 
-![](D:\大数据\bigdata\picture\20180903200615842.jpg)
+![](E:\GitStorage\bigdata\picture\20180903200615842.jpg)
 
 delete from dept where dname in (select t.dname from (select dname from dept group by dname having count(1) > 1)t)
 
@@ -249,7 +247,7 @@ Java 内用 Unicode 编码存储字符，字符流处理类负责将外部的其
 
 ## 23、Java中Sleep和Wait的区别
 
-> > > > > * 对于sleep()方法，我们首先要知道该方法是属于Thread类中的。而wait()方法，则是属于Object类中的。
+* 对于sleep()方法，我们首先要知道该方法是属于Thread类中的。而wait()方法，则是属于Object类中的。
 
 * sleep()方法导致了程序暂停执行指定的时间，让出cpu该其他线程，但是他的监控状态依然保持者，当指定的时间到了又会自动恢复运行状态。在调用sleep()方法的过程中，线程不会释放对象锁。
 
