@@ -8,7 +8,7 @@
 
 具有可靠、高效、可伸缩的特点。
 
-Hadoop的核心是YARN,HDFS和Mapreduce
+Hadoop的核心是HDFS、YARN、Mapreduce。
 
 下图是hadoop生态系统，集成spark生态圈。在未来一段时间内，hadoop将于spark共存，hadoop与spark都能部署在yarn、mesos的资源管理系统之上。
 
