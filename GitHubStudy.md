@@ -89,10 +89,56 @@
 
 ## 15、在git上撤销上一次commit的文件或目录
 
-> - 1、git stash	把工作区和暂存区的状态存储起来，并将当前工作区和暂存区重置为最近一次提交后的状态(commit)。
-> - 2、git reset HEAD~  保证你原本的修改还在，也能撤销本次提交失误。
-> - 3、git stash pop  将储藏内容弹出并应用，储藏内容会被从储藏列表中删除。
+> - git add 如果添加了错误的文件的话
+>  - git status 先看一下add 中的文件。
+>   - git reset HEAD 如果后面什么都不跟的话，就是上一次add 里面的全部撤销了。即：将暂存区和HEAD保持一直。
+>  - git reset --hard HEAD 表示回退到当前版本，HEAD指向当前版本。工作区和暂存区的修改会丢失，跟HEAD保持一致。如果你修改了一些代码，想去除，就可以用git reset --hard HEAD一次性去除。
+>   - git reset --hard HEAD~1 表示回退到上一个版本,清空暂存区,工作区的代码也将替换成上一个版本的代码。
+>  - git reset HEAD XXX.java 就是对某个java文件进行撤销了。
+>     - git reset HEAD dir 即对dir文件夹进行撤销。
+>
+>   - git reset三种方式（后面的1是指回退几个版本）
+>     - git reset(--mixed) HEAD~1
+>     回退一个版本，会将暂存区的内容和本地已提交的内容全部恢复到未暂存的状态。暂存区就是git add临时提交到的地方；未暂存的状态就是将这些文件标记为待提交。
+>  - git reset --soft HEAD~1
+>     回退一个版本,不清空暂存区,将已提交的内容恢复到暂存区,不影响原来本地的文件(未提交的也不受影响)，这些文件还在暂存区中。
+>  - git reset --hard HEAD~1
+>   表示回退到上一个版本,清空暂存区,工作区的代码也将替换成上一个版本的代码。
+>   
 
-## 16、在git上撤销上一次add的文件或目录
+## 16、删除仓库和本地的文件	
 
-> - git rm -r name --cached	name可以是.也可以是你git add 某个目录或文件。
+> ```
+>   git rm --cached file
+>   git commit -m "xxx"
+>   git push origin master
+>   删除仓库中的文件，保留本地的文件
+>   ```
+>
+> ```
+>   git rm file
+>   git commit -m "xxx"
+>   git push origin master
+>   删除本地及仓库中的文件
+>   ```
+
+## 17、git stash使用
+
+- git stash //将修改存储到暂存区，工作区会删除这些修改，重置为最近一次提交的状态(commit)。
+- git stash save <message>  //给stash存储取个名字
+- git stash  show  stash@{X} -p //查看stash@{X}暂存的修改
+- git stash pop //取出修改，并删除对应的stash
+- git stash list //查看暂存区的所有暂存修改记录
+- git stash apply stash@{X} //取出相应的暂存，不会删除暂存区的内容
+- git stash drop stash@{X} //将记录列表中取出的对应暂存记录删除
+- git stash clear  //清空stash暂存区
+
+## 18、git diff
+
+- git diff --cached	比较暂存区和HDAD的不同。
+- git diff   比较暂存区和工作区的不同。
+
+## 19、git log
+
+- git log	显示所有的提交。
+- git log --oneline 简化git log的默认的输出。
