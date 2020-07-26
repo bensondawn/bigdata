@@ -140,7 +140,6 @@
   - 查看所有分支：git branch -a
   - 切换到新分支：git checkout branchName
   - 上面两个命令合成为一个命令：git checkout -b branchName
-
 - 将暂存区内容恢复到工作区，即覆盖工作区的内容：
   - git checkout -- readme.txt  把暂存区的文件readme.txt覆盖工作区的文件
   - 如果要还原多个文件，那么使用空格分隔：git checkout -- readme.txt antzone.txt
@@ -150,3 +149,8 @@
   - git checkout 6c89271 -- readme.txt   6c89271 指的是git log --oneline命令显示的版本号
   - git checkout HEAD~2 -- readme.txt
   - git checkout Develop -- readme.txt  如果分支后面跟着文件路径，那么就是将对应分支中的文件还原到当前分支的工作区。
+
+## 21、git branch命令
+
+- git  branch -a	列出本地分支和远程分支
+- git  branch  -v	查看各个分支最后一次提交
