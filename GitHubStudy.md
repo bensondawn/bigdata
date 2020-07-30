@@ -152,5 +152,11 @@
 
 ## 21、git branch命令
 
-- git  branch -a	列出本地分支和远程分支
-- git  branch  -v	查看各个分支最后一次提交
+- git branch	不带参数：列出本地已经存在的分支，并且在当前分支的前面用"*"标记。
+- git branch -r   查看远程版本库分支列表。
+- git branch -a   查看所有分支列表，包括本地和远程。
+- git  branch  -v	查看各个分支最后一次提交。
+- git branch dev   创建名为dev的分支，创建分支时需要是最新的环境，创建分支但依然停留在当前分支。
+- git branch -d dev   删除dev分支，如果在分支中有一些未merge的提交，那么会删除分支失败，此时可以使用 git branch -D dev：强制删除dev分支。
+- git branch -vv   可以查看本地分支对应的远程分支。
+- git branch -m oldName newName   给分支重命名。
