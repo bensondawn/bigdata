@@ -132,6 +132,10 @@ Hbase中的角色：
 
 ### 5、Spark
 
+​			Spark生态：
+
+![](E:\GitStorage\bigdata\picture\20180812153901482.png)
+
 ​		Spark可以非常方便地与其他的开源产品进行融合。比如，Spark可以使用Hadoop的YARN和Apache Mesos作为它的资源管理和调度器，并且可以处理所有Hadoop支持的数据，包括HDFS、HBase和Cassandra等。Spark也可以不依赖于第三方的资源管理和调度器，它实现了Standalone作为其内置的资源管理和调度框架，这样进一步降低了Spark的使用门槛，使得所有人都可以非常容易地部署和使用Spark。
 
 * [Mesos](https://mesos.apache.org/)：Spark可以运行在Mesos里面（Mesos 类似于yarn的一个资源调度框架）
