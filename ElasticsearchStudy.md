@@ -53,7 +53,7 @@
   - 如果想单独配置读时分词器，则需要在mapping中配置search_analyzer。
   - mapping中配置好分词器，查询语句就不需要再指定分词器了(当然查询语句中是可以指定分词器的)。
 
-6. #### **Elastic Search之自定义Mapping
+6. #### Elastic Search之自定义Mapping
 
 > 参考：[Elastic Search之自定义Mapping](https://blog.csdn.net/fanrenxiang/article/details/85317344)
 
@@ -118,7 +118,7 @@ PUT test/test/_mapping
 
 
 
-### 例子1
+### 例子1：条件查询
 
 ```java
 {
@@ -147,9 +147,11 @@ PUT test/test/_mapping
 }
 ```
 
-### 例子2 ：
+### 例子2 ：权重
 
-### 通过boost参数, 令满足某个条件的文档的得分更高, 从而使得其排名更靠前。match查询会先对搜索词进行分词,分词完毕后再逐个对分词结果进行匹配。
+> 通过boost参数, 令满足某个条件的文档的得分更高, 从而使得其排名更靠前，默认情况下所有搜索条件的权重是一样的，都是1；一个大于1的boost会增加该查询条件的相对权重。查询结果score评分影响因素：词频(频率越高得分越高)、逆向文档频率(关键字得分高，常见词得分低)、权重、字段长度归一值(搜索条件所在的文档越短，分数越高，反之越低)。
+>
+> match查询会先对搜索词进行分词,分词完毕后再逐个对分词结果进行匹配。
 
 ```java
 {
@@ -228,7 +230,7 @@ PUT test/test/_mapping
 }
 ```
 
-### 过滤
+### 例子3：过滤
 
 ```java
 {
@@ -247,7 +249,7 @@ PUT test/test/_mapping
 }
 ```
 
-### 排序
+### 例子4：排序
 
 ```java 
 {
@@ -260,7 +262,7 @@ PUT test/test/_mapping
 }
 ```
 
-### 区间查询
+### 例子5：区间查询
 
 ```java
 {
