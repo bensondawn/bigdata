@@ -160,3 +160,17 @@
 - git branch -d dev   删除dev分支，如果在分支中有一些未merge的提交，那么会删除分支失败，此时可以使用 git branch -D dev：强制删除dev分支。
 - git branch -vv   可以查看本地分支对应的远程分支。
 - git branch -m oldName newName   给分支重命名。
+
+## 22、git merge
+
+> 分支同步主线代码步骤：
+>
+> 1、git checkout master 却换到主线
+>
+> 2、git pull 把主线代码拉取到本地
+>
+> 3、git checkout dev-v1.1 切换导分支
+>
+> 4、git merge master 合并主线代码，此时有冲突解决冲突，之后本地分支代码和主线代码就一样了。
+>
+> 5、git push origin dev-v1.1 推送到远端分支。

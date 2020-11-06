@@ -57,7 +57,7 @@
 
 > 参考：[Elastic Search之自定义Mapping](https://blog.csdn.net/fanrenxiang/article/details/85317344)
 
-7. #### ES 中 Text keyword 两种基本类型区别
+7. #### ES 中 Text/keyword 两种基本类型区别
 
 - string字段被拆分成两种新的数据类型: text用于全文搜索的, 而keyword用于关键词搜索。
 - 你可以在productID字段上进行全文搜索, 也可以通过productID.keyword字段实现关键词搜索及数据聚合。
