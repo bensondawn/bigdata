@@ -260,6 +260,20 @@ PUT test/test/_mapping
         {"msg_time":{"order":"desc"}}	//逆序，asc正序
     ]
 }
+
+{
+    "query":{
+        "bool":{
+            "must":[
+                {"term":{"gw_id.keyword":"1147027856417382400"}},
+                {"term":{"sensor_id.keyword":"1147029478157606912"}}
+            ]
+        }
+    },
+    "sort":[
+        {"msg_time":{"order":"desc"}}//逆序，asc正序
+    ]
+}
 ```
 
 ### 例子5：区间查询
