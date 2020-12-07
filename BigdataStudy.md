@@ -41,34 +41,43 @@ HDFS的基本结构：
 
 ![](E:\GitStorage\bigdata\picture\20170305150329985.png)
 
-> * **Client**：就是客户端。
->* 文件切分。当文件上传hdfs的时候，client将文件切分成一个一个的block进行存储。
+> * **Hdfs Client**：Hdfs客户端。
+>
+>     * 文件切分，文件上传只HDFS的时候将文件切分成一个一个的Block，然后存储。
+>     * 与namenode交互，获取文件的位置信息。
+>     * 与datanode交互，读取或者写入数据。
+>     * Client提供一些命令来管理和访问HDFS。
+>
+> * 文件切分。当文件上传hdfs的时候，client将文件切分成一个一个的block进行存储。
 >   * 与namenode交互获取文件位置信息。
 >   * 从namenode获取文件位置信息后，与datanode交互，实现数据的读取和写入。
->   
->* **NameNode**：是Master节点，有点类似Linux里的root根目录，是整个文件系统的管理节点。包含目录与数据块之间的关系(靠fsimage和edits来实现)，数据块和节点之间的关系。**fsimage**文件与**edits**文件是Namenode结点上的核心文件。
-> 
+>
+> * **NameNode**：是Master节点，有点类似Linux里的root根目录，是整个文件系统的管理节点。包含目录与数据块之间的关系(靠fsimage和edits来实现)，数据块和节点之间的关系。**fsimage**文件与**edits**文件是Namenode结点上的核心文件。
+>
 >  * 整个文件系统的文件目录树。
-> 
+>
 >    * 文件/目录的元信息和每个文件对应的数据块列表。
 >     * 接收处理客户端的读写请求，给Client返回DataNode的信息。
-> 
->* **Secondary Namenode**：作用是解决edits文件过大，Namenode重启的时候花费很长时间，因为很多改动要合并到fsimage文件上；如果Namenode宕机了，可能会丢失很多改动，Secondary Namenode能解决这个问题。工作原理如下：
+>
+> * **Secondary Namenode**：作用是解决edits文件过大，Namenode重启的时候花费很长时间，因为很多改动要合并到fsimage文件上；如果Namenode宕机了，可能会丢失很多改动，Secondary Namenode能解决这个问题。工作原理如下：
+>   
 >   * 首先，它定时到NameNode去获取edits，并更新到fsimage上。
 >   * 一旦它有新的fsimage文件，它将其拷贝回NameNode上。
+>   
 >  * NameNode在下次重启时回使用这个新的fsimage文件，从而减少重启的时间。
-> 
->* **Quorum Journal Node**：用于Namenode之间共享数据，保证数据的状态一致。当一个Namenode所在的服务器宕机时，可以在数据不丢失的情况下，手工或者自动切换到另一个Namenode提供服务。 
-> 
+>
+> * **Quorum Journal Node**：用于Namenode之间共享数据，保证数据的状态一致。当一个Namenode所在的服务器宕机时，可以在数据不丢失的情况下，手工或者自动切换到另一个Namenode提供服务。 
+>
 >  * **DataNode**：DataNode在HDFS中真正存储数据。
-> 
+>
 >     * 接收Client的读写请求。
-> 
+>
 >    - DataNode在存储数据的时候是按照block为单位读写数据的。block是hdfs读写数据的基本单位。
 >     - block本质上是一个逻辑概念，意味着block里面不会真正的存储数据，只是划分文件的。
 >    - block里也会存副本，保证数据的安全，默认的数量是3个。
+>    
 > * **fsimage**：它是NameNode启动时对整个文件系统的快照。（文件系统的目录树信息）
-> 
+>
 > * **edits**：它是在NameNode启动后，对文件系统的改动序列。（在Namenode启动后所有对目录结构的增加，删除，修改等操作都会记录到edits文件中，并不会同步的记录在fsimage中。）
 >
 > * **注意**：
@@ -77,11 +86,11 @@ HDFS的基本结构：
 >
 > ​		也就是说，当Namenode启动的时候，首先装载fsimage文件，然后在应用edits文件，最后还会将最新的目录树信息更新到新的fsimage文件中，然后启用新的edits文件。
 >
->   ​		整个流程是没有问题的，但是有个小瑕疵，就是如果Namenode在启动后发生的改变过多，会导致edits文件变得非常大，大得程度与Namenode的更新频率有关系。
+> ​		整个流程是没有问题的，但是有个小瑕疵，就是如果Namenode在启动后发生的改变过多，会导致edits文件变得非常大，大得程度与Namenode的更新频率有关系。
 >
->   ​		那么在下一次Namenode启动的过程中，读取了fsimage文件后，会应用这个无比大的edits文件，导致启动时间变长，并且不可控，可能需要启动几个小时也说不定。
+> ​		那么在下一次Namenode启动的过程中，读取了fsimage文件后，会应用这个无比大的edits文件，导致启动时间变长，并且不可控，可能需要启动几个小时也说不定。
 >
->   ​		**Namenode的edits文件过大的问题，也就是Secondary Namenode要解决的主要问题，Secondary Namenode会按照一定规则被唤醒，然后进行fsimage文件与edits文件的合并，防止edits文件过大，导致Namenode启动时间过长。**
+> ​		**Namenode的edits文件过大的问题，也就是Secondary Namenode要解决的主要问题，Secondary Namenode会按照一定规则被唤醒，然后进行fsimage文件与edits文件的合并，防止edits文件过大，导致Namenode启动时间过长。**
 
 ### 3、zookeeper
 

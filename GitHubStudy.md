@@ -53,24 +53,20 @@
 
 > - 进入项目目录输入：git config --global credential.helper store
 
-### 12、其它
+## 12、常用命令
 
 > 如果想把GitHub上的仓储下载下来，并随时更新可以这样：
 
 > * git clone https://github.com/bensondawn/bigdata.git
+> * git clone -b dev https://github.com/bensondawn/bigdata.gitl 克隆分支dev下的代码。
 > * git pull（以后直接用改命令从GitHub上更新就行了！）
-> * 推送分支git push origin master(分支名称)，git push origin dev(分支名称)
+> * git pull origin dev 把gitLab上dev分支上的内容都拉取到本地
+> * git push origin dev 提交代码到dev分支
+> * git fetch origin dev 设定当前分支的 FETCH_HEAD 为远程服务器的dev 分支；此时不会在本地创建dev分支，这个操作是git pull origin dev的第一步。
 > * rebase操作可以把本地未push的分叉提交历史整理成直线；
 > * rebase的目的是使得我们在查看历史提交的变化时更容易，因为分叉的提交需要三方对比。
 
-## 13、常用命令
-
-> * git clone -b dev https://github.com/bensondawn/bigdata.gitl 克隆分支dev下的代码。
-> * git push origin dev 提交代码到dev分支
-> * git fetch origin dev 设定当前分支的 FETCH_HEAD 为远程服务器的dev 分支；此时不会在本地创建dev分支，这个操作是git pull origin dev的第一步。
-> * git pull origin dev 把gitLab上dev分支上的内容都拉取到本地了
-
-## 14、删除github上的文件或文件夹
+## 13、删除github上的文件或文件夹
 
 > -  删除仓库中的目录：
 >    -  git rm -r --cached 目录名
@@ -85,7 +81,7 @@
 >    -  git commit -m "xxx"
 >    -  git push origin master
 
-## 15、git reset使用
+## 14、git reset使用
 
 > - git add 如果添加了错误的文件的话，git status 先看一下add 中的文件，撤销的方法：
 >     - git reset HEAD 如果后面什么都不跟的话，就是上一次add 里面的全部移到工作区。即：将暂存区和HEAD保持一致，撤销上一次的add操作。
@@ -104,7 +100,7 @@
 >       - git reset --hard HEAD~1 表示回退到上一个版本,清空暂存区,工作区的代码也将替换成上一个版本的代码。
 >
 
-## 16、git stash使用
+## 15、git stash使用
 
 - git stash //将修改存储到stash暂存区，工作区会删除这些修改，重置为最近一次提交的状态(commit)。
 - git stash save <message>  //给stash存储取个名字
@@ -115,17 +111,17 @@
 - git stash drop stash@{X} //将记录列表中取出的对应stash暂存记录删除
 - git stash clear  //清空stash暂存区
 
-## 17、git diff命令
+## 16、git diff命令
 
 - git diff --cached	比较暂存区和HDAD的不同。
 - git diff   比较暂存区和工作区的不同。
 
-## 18、git log命令
+## 17、git log命令
 
 - git log	显示所有的提交。
 - git log --oneline 简化git log的默认的输出。
 
-## 19、git add命令
+## 18、git add命令
 
 - git add -A  提交所有变化
 - git add -u  提交被修改(modified)和被删除(deleted)文件，不包括新文件(new)
@@ -133,7 +129,7 @@
 - git add 文件夹/ 
 - git add *.文件类型
 
-## 20、git checkout命令
+## 19、git checkout命令
 
 - 创建新分支和切换分支：
   - 创建新分支：git branch branchName
@@ -150,7 +146,7 @@
   - git checkout HEAD~2 -- readme.txt
   - git checkout Develop -- readme.txt  如果分支后面跟着文件路径，那么就是将对应分支中的文件还原到当前分支的工作区。
 
-## 21、git branch命令
+## 20、git branch命令
 
 - git branch	不带参数：列出本地已经存在的分支，并且在当前分支的前面用"*"标记。
 - git branch -r   查看远程版本库分支列表。
@@ -161,7 +157,7 @@
 - git branch -vv   可以查看本地分支对应的远程分支。
 - git branch -m oldName newName   给分支重命名。
 
-## 22、git merge
+## 21、git merge
 
 > 分支同步主线代码步骤：
 >
@@ -174,3 +170,4 @@
 > 4、git merge master 合并主线代码，此时有冲突解决冲突，之后本地分支代码和主线代码就一样了。
 >
 > 5、git push origin dev-v1.1 推送到远端分支。
+
