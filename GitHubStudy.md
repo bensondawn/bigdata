@@ -51,7 +51,8 @@
 
 ## 11、免去每次都要输入用户名和密码的麻烦
 
-> - 进入项目目录输入：git config --global credential.helper store
+> - git config --global credential.helper store
+> - git pull    输入用户名、密码，之后就不会再输入了。
 
 ## 12、常用命令
 
@@ -170,4 +171,29 @@
 > 4、git merge master 合并主线代码，此时有冲突解决冲突，之后本地分支代码和主线代码就一样了。
 >
 > 5、git push origin dev-v1.1 推送到远端分支。
+
+## 22、git remote 添加多个远程库地址
+
+> **方法一：**首先，我们从零开始， 假设你现在想要增加3个远程库地址，分别为 :
+>
+> <url1> **https://git.oschina.net/shede333/swioslibary.git**
+> <url2> **https://git.oschina.net/shede333/swscrollbar.git**
+> <url3> **https://github.com/shede333/CoreAnimationTestSW.git**
+>
+> 首先，先增加第一个地址 `git remote add origin <url1>`
+> 然后增加第二个地址 `git remote set-url --add origin <url2>`
+> 增加第三个地址 `git remote set-url --add origin <url3>`
+> ....依次类推
+>
+> 这样就完成了添加多个地址到origin库中了， 以后只要使用`git push origin master` 就可以一次性push到3各库里面了(使用`git push`也可)
+>
+> `git remote -v`:显示当前所有远程库的详细信息。
+
+> **方法二：**修改./git/config，[remote "origin"]里面添加url地址即可，不必去执行git命令。
+
+> **注意：**
+>
+> 使用`git push origin master`时，你可以push到origin的多个url地址，
+> 但是使用 `git pull`时，只能拉取origin里的一个url地址(即fetch-url，如上图)，这个fetch-url默认为 **你添加的到origin的第一个地址**，
+> 如果你想更改，只需要更改config文件里，那三个url的顺序即可，fetch-url会直接对应排行第一的那个utl连接。
 
