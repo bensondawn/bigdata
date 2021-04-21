@@ -14,6 +14,10 @@
 > fudge     127.127.1.0 stratum 10	#10:用于给局域网主机提供时间服务！
 > # prefer表示为优先，表示本机优先同步该服务器时间；
 > # iburst当一个运程NTP服务器不可用时，向它发送一系列的并发包进行检测；
+> # prefer和iburst可以同时使用；例如：
+> server times.aliyun.com iburst prefer #prefer表示为优先，表示本机优先同步该服务器时间；
+> server 210.72.145.44 iburst #iburst当一个运程NTP服务器不可用时,向它发送一系列的并发包进行检测；
+> server cn.pool.ntp.org iburst
 > ```
 
 # Ntp客户端ntp.conf配置
