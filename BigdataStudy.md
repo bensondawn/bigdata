@@ -214,12 +214,12 @@ Hbase中的角色：
 ![](E:\GitStorage\bigdata\picture\20171214211655857.png)
 
     2.1 Spark-submit在提交任务的时候请求到ResourceManager提交Application;
-    2.2 ResourceManager接受应用并根据集群资源状况决定在某个具体Node上命令资源管理器NodeManager来启动当前提交的应用程序的任务调度器JVM进程 Driver（ApplicationMaster）;
-    2.3 当Driver（ApplicationMaster）启动的时候，会首先向ResourceManager注册说明自己负责当前程序的运行，会下载当前Application相关的Jar包等各种资源，并基于此向ResourceMananger申请资源;
-    2.4 ResourceManager接受到Driver（ApplicationMaster）的资源分配的请求之后，会最大化地满足资源分配的请求，并把资源的元数据信息发送给Driver（ApplicationMaster）;
-    2.5 Driver（ApplicationMaster）收到资源的元数据信息后会根据元数据发指令给具体机器上的NodeManager，让 NodeManager来启动具体的Container;
-    2.6 Container在启动后必须向Driver（ApplicationMaster）注册，当Driver（ApplicationMaster）获得了用于计算的Containers后，开始进行任务的调度和计算，直到作业完成。
-    注意：Container要向NodeManager汇报资源信息，Container要向App Mstr汇报计算信息。
+    2.2 ResourceManager接受应用并根据集群资源状况决定在某个具体Node上命令资源管理器NodeManager来启动当前提交的应用程序的任务调度器JVM进程 ApplicationMaster（Driver）;
+    2.3 当ApplicationMaster（Driver）启动的时候，会首先向ResourceManager注册说明自己负责当前程序的运行，会下载当前Application相关的Jar包等各种资源，并基于此向ResourceMananger申请资源;
+    2.4 ResourceManager接受到ApplicationMaster（Driver）的资源分配的请求之后，会最大化地满足资源分配的请求，并把资源的元数据信息发送给ApplicationMaster（Driver）;
+    2.5 ApplicationMaster（Driver）收到资源的元数据信息后会根据元数据发指令给具体机器上的NodeManager，让 NodeManager来启动具体的Container;
+    2.6 Container在启动后必须向ApplicationMaster（Driver）注册，当ApplicationMaster（Driver）获得了用于计算的Containers后，开始进行任务的调度和计算，直到作业完成。
+    注意：Container要向NodeManager汇报资源信息，Container要向ApplicationMaster（Driver）汇报计算信息。
     
     需要补充说明的是：
     （1） 如果 ResourceManager 第一次没有能够完全完成 ApplicationMaster 分配的资源的请求，后续 ResourceManager 发现集群中有新的可用资源时，会主动向 ApplicationMaster 发送新的可用资源的元数据信息以提供更多的资源用于当前程序的运行。
